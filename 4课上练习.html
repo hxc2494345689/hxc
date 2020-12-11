@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			window.onload = function(){
+				var aInput = document.getElementsByTagName("input");
+				var oTable = document.getElementById("tb");
+					aInput[3].onclick = function(){
+					var id = aInput[0].value;
+					var name = aInput[1].value;
+					var tel = aInput[2].value;
+					//=====创建节点相关代码！
+					//创建一个tr节点
+					var tr = document.createElement("tr");
+
+					//创建4个td
+					//<td></td>
+					var td1 = document.createElement("td");
+					td1.innerHTML = id;
+
+					var td2 = document.createElement("td");
+					td2.innerHTML = name;
+
+					var td3 = document.createElement("td");
+					td3.innerHTML = tel;
+
+					var td4 = document.createElement("td");
+					//创建a节点
+					var aNode = document.createElement("a");
+					//设置文字内容
+					aNode.innerHTML = "删除";
+					//设置属性
+					aNode.setAttribute("href", "#");
+					aNode.name = "delete";
+					td4.appendChild(aNode);
+
+					//===把4个td添加到tr里
+					tr.appendChild(td1);
+					tr.appendChild(td2);
+					tr.appendChild(td3);
+					tr.appendChild(td4);
+					//===把tr放到table上
+					oTable.appendChild(tr);
+					//更新删除功能
+					btnClick();
+				}
+				//删除功能
+				function btnClick(){
+					//获取删除功能的a标签
+					var aDelete = document.getElementsByName("delete");
+					//循环添加点击删除事件
+					for(var i = 0; i < aDelete.length; i++) {
+						aDelete[i].onclick = function() {
+							//删除对应这个a标签的tr
+							oTable.deleteRow(this.parentNode.parentNode.rowIndex);
+						}
+					}
+				}
+				btnClick();
+			}
+		</script>
+	</head>
+
+	<body>
+		ID:<input type="text"/> 姓名：
+		<input type="text"/> 电话：
+		<input type="text"/>
+		<input type="button" value="保存"/>
+		<br/>
+		<br/>
+		<table border="1" id="tb">
+			<tr>
+				<th>ID</th>
+				<th>姓名</th>
+				<th>电话</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<td>17</td>
+				<td>袭人</td>
+				<td>13888888888</td>
+				<td>
+					<a href="#" name="delete">删除</a>
+				</td>
+			</tr>
+			<tr>
+				<td>16</td>
+				<td>含春</td>
+				<td>13666666666</td>
+				<td>
+					<a href="#" name="delete">删除</a>
+				</td>
+			</tr>
+			<tr>
+				<td>14</td>
+				<td>迎春</td>
+				<td>18888888888</td>
+				<td>
+					<a href="#" name="delete">删除</a>
+				</td>
+			</tr>
+		</table>
+	</body>
+
+</html>
